@@ -1,0 +1,16 @@
+body{
+    background-color: #17add3 !important;
+    color: #ffffff !important;
+    width: 100% !important;
+}
+
+#carouselStackedIndicators{
+    position: relative !important;
+    width: 100vw;
+    height: 100vh;
+}
+
+.carousel-item img{
+    position: relative !important;
+    width: 100% !important;
+}

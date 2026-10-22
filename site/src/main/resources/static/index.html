@@ -1,105 +1,458 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Portifólio de Programação - Ludson Pereira Moreira</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="Portfólio de desenvolvimento: linguagens, tecnologias, projetos e contato.">
+  <title>ludsonmoreira.dev — Portfólio de Desenvolvimento</title>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/icons8-pasta-de-código-color-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/icons8-pasta-de-código-color-32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="./img/favicon/icons8-pasta-de-código-color-96.png">
+
+  <!-- Importações de fontes e estilos -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-    <nav class="navbar md:navbar-expand bg-1">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="/docs/6.0/assets/brand/bootstrap-logo.svg" alt="Bootstrap" width="30" height="24">
-            </a>
-            <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarDrawer"
-                aria-controls="navbarDrawer" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon" aria-hidden="true"></span>
-            </button>
-            <dialog class="drawer drawer-end" tabindex="-1" id="navbarDrawer" aria-labelledby="navbarDrawerLabel">
-                <div class="drawer-header">
-                    <h5 class="drawer-title" id="navbarDrawerLabel">Menu</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
-                </div>
-                <div class="drawer-body mb-2 md:mb-0">
-                    <ul class="nav navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" type="button" data-bs-toggle="menu" aria-expanded="false">
-                                Menu
-                            </button>
-                            <div class="menu">
-                                <a class="menu-item" href="#">Action</a>
-                                <a class="menu-item" href="#">Another action</a>
-                                <hr class="menu-divider">
-                                <a class="menu-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                        </li>
-                    </ul>
-                    <form class="hstack gap-2" role="search">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
-                        <button class="btn-solid btn-icon theme-secondary" type="submit">
-                            <svg class="bi" width="16" height="16">
-                                <use href="#search" />
-                            </svg>
-                        </button>
-                    </form>
-                </div>
-            </dialog>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <canvas class="particle-canvas" id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header" id="topo">
+    <nav class="navbar navbar-expand-lg site-nav" aria-label="Navegação principal">
+      <div class="container">
+        <a class="navbar-brand brand-mark" href="#topo" aria-label="Página inicial">
+          <span class="brand-icon">&lt;/&gt;</span><span>ludsonmoreira<span class="accent">.dev</span></span>
+        </a>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menu" aria-expanded="false"
+          aria-controls="mainNav">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-panel" id="mainNav">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+            <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+            <li class="nav-item"><a class="nav-link" href="#tecnologias">Tecnologias</a></li>
+            <li class="nav-item"><a class="nav-link" href="#projetos">Projetos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+            <li class="nav-item ms-lg-3"><a class="nav-cta" href="#contato">Vamos conversar <i
+                  class="bi bi-arrow-up-right" aria-hidden="true"></i></a></li>
+          </ul>
         </div>
+      </div>
     </nav>
+  </header>
 
-    <div id="carouselStackedIndicators" class="carousel slide">
-        <div class="carousel-inner rounded-5">
-            <div class="carousel-item active">
-                <img src="/img/java.png" class="d-block w-100" alt="JavaLogo">
+  <main id="conteudo">
+    <section class="hero-section section-shell" aria-labelledby="hero-title">
+      <div class="container hero-container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7 hero-copy">
+            <div class="eyebrow reveal"><span class="status-dot"></span> PORTFÓLIO DE DESENVOLVIMENTO <span
+                class="eyebrow-line"></span></div>
+            <h1 id="hero-title" class="hero-title reveal">Código com propósito.<br><span class="gradient-text">Ideias em
+                movimento.</span></h1>
+            <p class="hero-description reveal">Olá, sou <strong>Ludson Moreira</strong> — desenvolvedor em constante
+              evolução. Gosto de transformar problemas reais em soluções digitais funcionais, acessíveis e bem
+              construídas.</p>
+            <div class="hero-typed reveal"><span class="typed-prefix">&gt;</span> <span id="typedText">desenvolvimento
+                web</span><span class="typing-cursor" aria-hidden="true"></span></div>
+            <div class="hero-actions reveal">
+              <a href="#tecnologias" class="btn btn-neon">Explorar tecnologias <i class="bi bi-arrow-down-right"
+                  aria-hidden="true"></i></a>
+              <a href="#projetos" class="btn btn-ghost">Ver projetos <i class="bi bi-grid-1x2"
+                  aria-hidden="true"></i></a>
             </div>
-            <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
+            <div class="hero-socials reveal" aria-label="Links sociais">
+              <span class="social-caption">ME ENCONTRE EM</span>
+              <a href="https://github.com/seu-usuario" target="_blank" rel="noreferrer"
+                aria-label="GitHub (edite o link)"><i class="bi bi-github"></i></a>
+              <a href="https://www.linkedin.com/in/seu-usuario" target="_blank" rel="noreferrer"
+                aria-label="LinkedIn (edite o link)"><i class="bi bi-linkedin"></i></a>
+              <a href="mailto:seuemail@exemplo.com" aria-label="Enviar e-mail (edite o endereço)"><i
+                  class="bi bi-envelope"></i></a>
             </div>
-            <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
+          </div>
+
+          <div class="col-lg-5 hero-visual reveal">
+            <div class="orbit orbit-one" aria-hidden="true"></div>
+            <div class="orbit orbit-two" aria-hidden="true"></div>
+            <div class="code-window">
+              <div class="window-topbar">
+                <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <span class="window-file"><i class="bi bi-filetype-js" aria-hidden="true"></i> developer.js</span>
+                <span class="window-menu" aria-hidden="true">•••</span>
+              </div>
+              <div class="code-content" aria-label="Exemplo decorativo de código">
+                <div class="code-line"><span class="line-num">01</span><span><span class="code-purple">const</span>
+                    <span class="code-blue">developer</span> = {</span></div>
+                <div class="code-line indent"><span class="line-num">02</span><span><span class="code-red">name</span>:
+                    <span class="code-green">'ludson moreira'</span>,</span></div>
+                <div class="code-line indent"><span class="line-num">03</span><span><span class="code-red">focus</span>:
+                    <span class="code-green">'web development'</span>,</span></div>
+                <div class="code-line indent"><span class="line-num">04</span><span><span
+                      class="code-red">mindset</span>: <span class="code-green">'always learning'</span>,</span></div>
+                <div class="code-line indent"><span class="line-num">05</span><span><span
+                      class="code-red">coffee</span>: <span class="code-orange">true</span>,</span></div>
+                <div class="code-line"><span class="line-num">06</span><span>};</span></div>
+                <div class="code-spacer"></div>
+                <div class="code-line"><span class="line-num">07</span><span><span class="code-purple">function</span>
+                    <span class="code-blue">buildFuture</span>() {</span></div>
+                <div class="code-line indent"><span class="line-num">08</span><span><span
+                      class="code-purple">return</span> <span class="code-green">'uma linha de cada vez'</span>;</span>
+                </div>
+                <div class="code-line"><span class="line-num">09</span><span>}</span></div>
+                <div class="code-line terminal-output"><span class="terminal-symbol">↳</span> <span
+                    id="terminalStatus">pronto para criar algo incrível_</span></div>
+              </div>
+              <div class="window-footer"><span><i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  UTF-8</span><span>JavaScript</span><span><i class="bi bi-broadcast" aria-hidden="true"></i>
+                  online</span></div>
             </div>
+            <div class="floating-chip chip-top"><i class="devicon-javascript-plain colored"
+                aria-hidden="true"></i><span>JavaScript</span></div>
+            <div class="floating-chip chip-bottom"><i class="bi bi-braces-asterisk" aria-hidden="true"></i><span>Clean
+                code</span></div>
+            <div class="visual-caption"><span class="caption-line"></span> BUILD. LEARN. REPEAT.</div>
+          </div>
         </div>
-        <div class="d-flex justify-content-between align-items-center">
-            <div>
-                <button class="btn-icon btn-sm" type="button" data-bs-target="#carouselStackedIndicators"
-                    data-bs-slide="prev">
-                    <span class="carousel-icon-prev" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="btn-icon btn-sm" type="button" data-bs-target="#carouselStackedIndicators"
-                    data-bs-slide="next">
-                    <span class="carousel-icon-next" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselStackedIndicators" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselStackedIndicators" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselStackedIndicators" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
-            </div>
+        <div class="hero-scroll-hint"><span class="mouse-icon"><span></span></span><span>ROLE PARA DESCOBRIR</span><i
+            class="bi bi-arrow-down" aria-hidden="true"></i></div>
+      </div>
+    </section>
+
+    <section class="stack-strip" aria-label="Tecnologias em destaque">
+      <div class="stack-track" id="stackTrack">
+        <div class="stack-group">
+          <span><i class="devicon-html5-plain colored" aria-hidden="true"></i> HTML5</span><b aria-hidden="true">✳</b>
+          <span><i class="devicon-css3-plain colored" aria-hidden="true"></i> CSS3</span><b aria-hidden="true">✳</b>
+          <span><i class="devicon-javascript-plain colored" aria-hidden="true"></i> JavaScript</span><b
+            aria-hidden="true">✳</b>
+          <span><i class="devicon-nodejs-plain colored" aria-hidden="true"></i> Node.js</span><b
+            aria-hidden="true">✳</b>
+          <span><i class="devicon-php-plain colored" aria-hidden="true"></i> PHP</span><b aria-hidden="true">✳</b>
+          <span><i class="devicon-python-plain colored" aria-hidden="true"></i> Python</span><b aria-hidden="true">✳</b>
+          <span><i class="devicon-java-plain colored" aria-hidden="true"></i> Java</span><b aria-hidden="true">✳</b>
+          <span><i class="devicon-c-plain colored" aria-hidden="true"></i> C</span><b aria-hidden="true">✳</b>
+          <span><i class="devicon-postgresql-plain colored" aria-hidden="true"></i> SQL</span><b
+            aria-hidden="true">✳</b>
         </div>
+        <div class="stack-group" aria-hidden="true">
+          <span><i class="devicon-html5-plain colored"></i> HTML5</span><b>✳</b>
+          <span><i class="devicon-css3-plain colored"></i> CSS3</span><b>✳</b>
+          <span><i class="devicon-javascript-plain colored"></i> JavaScript</span><b>✳</b>
+          <span><i class="devicon-nodejs-plain colored"></i> Node.js</span><b>✳</b>
+          <span><i class="devicon-php-plain colored"></i> PHP</span><b>✳</b>
+          <span><i class="devicon-python-plain colored"></i> Python</span><b>✳</b>
+          <span><i class="devicon-java-plain colored"></i> Java</span><b>✳</b>
+          <span><i class="devicon-c-plain colored"></i> C</span><b>✳</b>
+          <span><i class="devicon-postgresql-plain colored"></i> SQL</span><b>✳</b>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell about-section" id="sobre" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-kicker">01 / UM POUCO SOBRE MIM</span>
+          <h2 id="about-title">Curiosidade que vira <span class="gradient-text">solução.</span></h2>
+          <p>Mais do que escrever código, procuro entender o desafio por trás de cada projeto.</p>
+        </div>
+        <div class="row g-4 align-items-stretch about-grid">
+          <div class="col-lg-7 reveal">
+            <article class="about-card h-100">
+              <div class="about-card-icon"><i class="bi bi-terminal" aria-hidden="true"></i></div>
+              <h3>Aprender. Construir. Melhorar.</h3>
+              <p>Tenho interesse em desenvolvimento web, estruturação de aplicações e criação de experiências de usuário
+                incríveis. A cada projeto, busco evoluir na organização do código, na solução de problemas e na
+                qualidade do resultado.</p>
+              <!-- <p class="muted-copy">Este espaço reúne as tecnologias com as quais estudo e desenvolvo projetos. Ajuste os textos para refletirem sua experiência real.</p> -->
+              <a href="#contato" class="text-link">Vamos trocar uma ideia <i class="bi bi-arrow-up-right"
+                  aria-hidden="true"></i></a>
+            </article>
+          </div>
+          <div class="col-lg-5 reveal">
+            <div class="principles-grid h-100">
+              <article class="principle-card"><span class="principle-number">01</span><i class="bi bi-layers"
+                  aria-hidden="true"></i>
+                <h3>Fundamentos sólidos</h3>
+                <p>Lógica, estrutura e código legível.</p>
+              </article>
+              <article class="principle-card"><span class="principle-number">02</span><i class="bi bi-phone"
+                  aria-hidden="true"></i>
+                <h3>Design responsivo</h3>
+                <p>Experiências para diferentes telas.</p>
+              </article>
+              <article class="principle-card"><span class="principle-number">03</span><i class="bi bi-arrow-repeat"
+                  aria-hidden="true"></i>
+                <h3>Evolução contínua</h3>
+                <p>Aprender, testar e refatorar.</p>
+              </article>
+              <article class="principle-card"><span class="principle-number">04</span><i class="bi bi-people"
+                  aria-hidden="true"></i>
+                <h3>Colaboração</h3>
+                <p>Comunicação e trabalho em equipe.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell tech-section" id="tecnologias" aria-labelledby="tech-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-kicker">02 / MINHA CAIXA DE FERRAMENTAS</span>
+          <h2 id="tech-title">Tecnologias que <span class="gradient-text">uso para criar.</span></h2>
+          <p>Uma visão geral das linguagens e ferramentas presentes na minha jornada.</p>
+        </div>
+        <div class="tech-toolbar reveal">
+          <div class="filter-group" role="group" aria-label="Filtrar tecnologias">
+            <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">Todas
+              <span>08</span></button>
+            <button class="filter-btn" type="button" data-filter="frontend" aria-pressed="false">Front-end</button>
+            <button class="filter-btn" type="button" data-filter="backend" aria-pressed="false">Back-end</button>
+            <button class="filter-btn" type="button" data-filter="data" aria-pressed="false">Dados</button>
+          </div>
+          <span class="tech-hint"><i class="bi bi-command" aria-hidden="true"></i> SELECIONE UMA CATEGORIA</span>
+        </div>
+        <div class="row g-3 tech-grid" id="techGrid">
+          <div class="col-6 col-md-4 col-xl-3 tech-item reveal" data-categories="frontend">
+            <article class="tech-card">
+              <div class="tech-card-top"><span class="tech-icon icon-html"><i class="devicon-html5-plain"
+                    aria-hidden="true"></i></span><span class="tech-index">LANG / 01</span></div>
+              <h3>HTML5</h3>
+              <p>Estrutura semântica para a web.</p>
+              <div class="tech-tags"><span>Markup</span><span>Web</span></div><span class="tech-card-arrow"><i
+                  class="bi bi-arrow-up-right" aria-hidden="true"></i></span>
+            </article>
+          </div>
+          <div class="col-6 col-md-4 col-xl-3 tech-item reveal" data-categories="frontend">
+            <article class="tech-card">
+              <div class="tech-card-top"><span class="tech-icon icon-css"><i class="devicon-css3-plain"
+                    aria-hidden="true"></i></span><span class="tech-index">LANG / 02</span></div>
+              <h3>CSS3</h3>
+              <p>Estilização, animações e responsividade.</p>
+              <div class="tech-tags"><span>UI</span><span>Responsive</span></div><span class="tech-card-arrow"><i
+                  class="bi bi-arrow-up-right" aria-hidden="true"></i></span>
+            </article>
+          </div>
+          <div class="col-6 col-md-4 col-xl-3 tech-item reveal" data-categories="frontend backend">
+            <article class="tech-card">
+              <div class="tech-card-top"><span class="tech-icon icon-js"><i class="devicon-javascript-plain"
+                    aria-hidden="true"></i></span><span class="tech-index">LANG / 03</span></div>
+              <h3>JavaScript</h3>
+              <p>Interatividade e lógica de aplicações.</p>
+              <div class="tech-tags"><span>ES6+</span><span>DOM</span></div><span class="tech-card-arrow"><i
+                  class="bi bi-arrow-up-right" aria-hidden="true"></i></span>
+            </article>
+          </div>
+          <div class="col-6 col-md-4 col-xl-3 tech-item reveal" data-categories="backend">
+            <article class="tech-card">
+              <div class="tech-card-top"><span class="tech-icon icon-c"><i class="devicon-c-plain"
+                    aria-hidden="true"></i></span><span class="tech-index">LANG / 04</span></div>
+              <h3>C</h3>
+              <p>Servidores e APIs de alto desempenho.</p>
+              <div class="tech-tags"><span>Express</span><span>REST API</span></div><span class="tech-card-arrow"><i
+                  class="bi bi-arrow-up-right" aria-hidden="true"></i></span>
+            </article>
+          </div>
+          <div class="col-6 col-md-4 col-xl-3 tech-item reveal" data-categories="backend">
+            <article class="tech-card">
+              <div class="tech-card-top"><span class="tech-icon icon-php"><i class="devicon-php-plain"
+                    aria-hidden="true"></i></span><span class="tech-index">LANG / 05</span></div>
+              <h3>PHP</h3>
+              <p>Lógica de servidor e aplicações web.</p>
+              <div class="tech-tags"><span>Backend</span><span>Web</span></div><span class="tech-card-arrow"><i
+                  class="bi bi-arrow-up-right" aria-hidden="true"></i></span>
+            </article>
+          </div>
+          <div class="col-6 col-md-4 col-xl-3 tech-item reveal" data-categories="backend data">
+            <article class="tech-card">
+              <div class="tech-card-top"><span class="tech-icon icon-python"><i class="devicon-python-plain"
+                    aria-hidden="true"></i></span><span class="tech-index">LANG / 06</span></div>
+              <h3>Python</h3>
+              <p>Scripts, automação e análise de dados.</p>
+              <div class="tech-tags"><span>Scripts</span><span>Dados</span></div><span class="tech-card-arrow"><i
+                  class="bi bi-arrow-up-right" aria-hidden="true"></i></span>
+            </article>
+          </div>
+          <div class="col-6 col-md-4 col-xl-3 tech-item reveal" data-categories="backend">
+            <article class="tech-card">
+              <div class="tech-card-top"><span class="tech-icon icon-java"><i class="devicon-java-plain"
+                    aria-hidden="true"></i></span><span class="tech-index">LANG / 07</span></div>
+              <h3>Java</h3>
+              <p>Orientação a objetos e aplicações.</p>
+              <div class="tech-tags"><span>OOP</span><span>JVM</span></div><span class="tech-card-arrow"><i
+                  class="bi bi-arrow-up-right" aria-hidden="true"></i></span>
+            </article>
+          </div>
+          <div class="col-6 col-md-4 col-xl-3 tech-item reveal" data-categories="data backend">
+            <article class="tech-card">
+              <div class="tech-card-top"><span class="tech-icon icon-sql"><i class="devicon-postgresql-plain"
+                    aria-hidden="true"></i></span><span class="tech-index">QUERY / 08</span></div>
+              <h3>SQL</h3>
+              <p>Consultas, relacionamentos e dados.</p>
+              <div class="tech-tags"><span>Queries</span><span>Database</span></div><span class="tech-card-arrow"><i
+                  class="bi bi-arrow-up-right" aria-hidden="true"></i></span>
+            </article>
+          </div>
+        </div>
+        <!-- <p class="tech-disclaimer reveal"><i class="bi bi-info-circle" aria-hidden="true"></i> Personalize os cartões para manter apenas tecnologias que você realmente conhece e deseja apresentar.</p> -->
+      </div>
+    </section>
+
+    <section class="section-shell projects-section" id="projetos" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-heading section-heading-row reveal">
+          <div><span class="section-kicker">03 / PROJETOS EM DESTAQUE</span>
+            <h2 id="projects-title">Código que sai <span class="gradient-text">do papel.</span></h2>
+          </div>
+          <!-- <p>Alguns exemplos do tipo de solução que pode entrar no seu portfólio. Troque os links e descrições pelos seus projetos reais.</p> -->
+        </div>
+        <div class="row g-4 project-grid">
+          <div class="col-lg-6 reveal">
+            <article class="project-card project-wide">
+              <div class="project-art art-school">
+                <div class="art-topline"><span>CASE_001</span><span>WEB APP</span></div>
+                <div class="dashboard-mock">
+                  <aside><span></span><span></span><span></span><span></span></aside>
+                  <div class="dashboard-main">
+                    <div class="mock-title"></div>
+                    <div class="mock-stats"><i></i><i></i><i></i></div>
+                    <div class="mock-chart">
+                      <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                    <div class="mock-rows"><i></i><i></i><i></i></div>
+                  </div>
+                </div><span class="art-orbit"></span>
+              </div>
+              <div class="project-info">
+                <div class="project-meta"><span>APLICAÇÃO WEB</span><span class="project-number">01 / 03</span></div>
+                <h3>Sistema de gestão</h3>
+                <p>Uma aplicação para centralizar rotinas, organizar informações e simplificar tarefas do dia a dia.</p>
+                <div class="project-tags"><span>Node.js</span><span>Express</span><span>Banco de dados</span></div><a
+                  class="project-link" href="#contato" aria-label="Saiba mais sobre o sistema de gestão"><i
+                    class="bi bi-arrow-up-right"></i></a>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-6 reveal">
+            <article class="project-card">
+              <div class="project-art art-landing">
+                <div class="art-topline"><span>CASE_002</span><span>LANDING PAGE</span></div>
+                <div class="landing-mock">
+                  <div class="landing-nav"><span></span><span></span><span></span><b></b></div>
+                  <div class="landing-hero">
+                    <div><i></i><i></i><i></i><b></b></div>
+                    <div class="landing-shape"><span></span><span></span><span></span></div>
+                  </div>
+                  <div class="landing-cards"><i></i><i></i><i></i></div>
+                </div><span class="art-cross">✳</span>
+              </div>
+              <div class="project-info">
+                <div class="project-meta"><span>DESIGN & FRONT-END</span><span class="project-number">02 / 03</span>
+                </div>
+                <h3>Landing page moderna</h3>
+                <p>Uma página de apresentação com foco em identidade visual, responsividade e conversão.</p>
+                <div class="project-tags"><span>HTML5</span><span>CSS3</span><span>Bootstrap</span></div><a
+                  class="project-link" href="#contato" aria-label="Saiba mais sobre a landing page"><i
+                    class="bi bi-arrow-up-right"></i></a>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-6 reveal">
+            <article class="project-card">
+              <div class="project-art art-code">
+                <div class="art-topline"><span>CASE_003</span><span>API / TOOL</span></div>
+                <div class="terminal-mock">
+                  <div><i></i><i></i><i></i><span>api.controller.js</span></div>
+                  <p><b>01</b> <em>router</em>.<strong>get</strong>(<u>'/skills'</u>,</p>
+                  <p><b>02</b> &nbsp; <em>async</em> (req, res) <strong>=&gt;</strong> {</p>
+                  <p><b>03</b> &nbsp;&nbsp; <em>const</em> data = <u>await</u> service();</p>
+                  <p><b>04</b> &nbsp;&nbsp; res.<strong>json</strong>(data);</p>
+                  <p><b>05</b> });</p>
+                </div><span class="code-glow"></span>
+              </div>
+              <div class="project-info">
+                <div class="project-meta"><span>BACK-END</span><span class="project-number">03 / 03</span></div>
+                <h3>API de serviços</h3>
+                <p>Uma API organizada em camadas para conectar dados, regras de negócio e aplicações.</p>
+                <div class="project-tags"><span>JavaScript</span><span>REST</span><span>SQL</span></div><a
+                  class="project-link" href="#contato" aria-label="Saiba mais sobre a API"><i
+                    class="bi bi-arrow-up-right"></i></a>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-6 reveal">
+            <div class="project-note-card">
+              <div class="note-icon"><i class="bi bi-git" aria-hidden="true"></i></div><span class="section-kicker">SEU
+                PRÓXIMO PROJETO</span>
+              <h3>O próximo case pode ser o seu.</h3>
+              <!-- <p>Adicione repositórios do GitHub, demonstrações ao vivo e um resumo do problema, da solução e das
+                tecnologias utilizadas.</p> -->
+              <a href="https://github.com/LudsonMoreira?tab=repositories" target="_blank" rel="noreferrer"
+                class="text-link">Ver repositórios <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+              <div class="note-decoration" aria-hidden="true">body{ }</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section section-shell" id="contato" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div class="contact-grid-art" aria-hidden="true"></div>
+          <div class="contact-content">
+            <span class="section-kicker">04 / PRÓXIMO PASSO</span>
+            <h2 id="contact-title">Tem uma ideia?<br><span class="gradient-text">Vamos construir.</span></h2>
+            <p>Estou aberto a conversar sobre projetos, oportunidades e tecnologia. Entre em contato para começarmos uma
+              boa conversa.</p>
+            <div class="contact-actions"><a class="btn btn-neon" id="emailButton"
+                href="mailto:ludson.moreira@escola.pr.gov.br">Entrar em contato <i class="bi bi-arrow-up-right"
+                  aria-hidden="true"></i></a><button class="btn btn-ghost" id="copyEmail" type="button"
+                data-email="ludson.moreira@escola.pr.gov.br"><i class="bi bi-copy" aria-hidden="true"></i> Copiar
+                e-mail</button>
+            </div>
+            <p class="copy-feedback" id="copyFeedback" aria-live="polite"></p>
+          </div>
+          <div class="contact-decoration" aria-hidden="true"><span>LET'S</span><span>BUILD<span
+                class="accent">_</span></span><span>SOMETHING.</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner"><a class="navbar-brand brand-mark" href="#topo"><span
+          class="brand-icon">&lt;/&gt;</span><span>ludsonmoreira<span class="accent">.dev</span></span></a>
+      <span class="footer-copy">© <span id="currentYear"></span> Ludson Moreira. Todos os direitos reservados.</span>
     </div>
+  </footer>
+  <button id="backToTop" class="back-to-top" type="button" aria-label="Voltar ao topo"><i class="bi bi-arrow-up"
+      aria-hidden="true"></i></button>
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL"
-        crossorigin="anonymous"></script>
+  <!-- Bootstrap 6 Alpha usa JavaScript em módulo. -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL"
+    crossorigin="anonymous"></script>
+  <script src="js/script.js" defer></script>
 </body>
 
 </html>
